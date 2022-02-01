@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{424FEA28
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Persistence", "src\corePackages\Core.Persistence\Core.Persistence.csproj", "{3348ECCF-7ACC-45C0-A775-832CB9AD6FBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns", "src\corePackages\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{F68C47FC-B31A-4B2A-BC1D-95DC44A51956}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{3348ECCF-7ACC-45C0-A775-832CB9AD6FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3348ECCF-7ACC-45C0-A775-832CB9AD6FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3348ECCF-7ACC-45C0-A775-832CB9AD6FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F68C47FC-B31A-4B2A-BC1D-95DC44A51956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F68C47FC-B31A-4B2A-BC1D-95DC44A51956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F68C47FC-B31A-4B2A-BC1D-95DC44A51956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F68C47FC-B31A-4B2A-BC1D-95DC44A51956}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{164AE1A7-3514-420C-9C2C-3C8F3B2886B2} = {8BD0D3ED-F219-4C7C-AAD7-1492B49E942A}
 		{B990AE3D-899A-4155-8E9E-F1A216AA7768} = {8BD0D3ED-F219-4C7C-AAD7-1492B49E942A}
 		{3348ECCF-7ACC-45C0-A775-832CB9AD6FBB} = {B29FD10F-8E9E-44C4-9B5C-72459A477448}
+		{F68C47FC-B31A-4B2A-BC1D-95DC44A51956} = {B29FD10F-8E9E-44C4-9B5C-72459A477448}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {473FB1F7-C4D3-4526-B31C-7550EA68718D}

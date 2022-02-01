@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Core.Persistence.Repositories
 {
-    public interface IAsyncRepository<T> where T : class
+    public interface IAsyncRepository<T> where T : Entity
     {
         Task<T> GetAsync(Expression<Func<T, bool>> predicate);
         Task<IPaginate<T>> GetListAsync(Expression<Func<T, bool>> predicate = null,

@@ -14,34 +14,59 @@ namespace Core.Persistence.Repositories
         where TEntity : Entity
         where TContext : DbContext
     {
-        public Task<TEntity> AddAsync(TEntity entity)
+        protected TContext Context { get; }
+        public EfRepositoryBase(TContext context)
         {
-            throw new NotImplementedException();
+            Context = context;
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Context.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
 
-        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IPaginate<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate = null, 
+                                                           Func<IQueryable<TEntity>, 
+                                                           IOrderedQueryable<TEntity>> orderBy = null, 
+                                                           Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, 
+                                                               object>> include = null, 
+                                                           int index = 0, int size = 10, 
+                                                           bool enableTracking = true, 
+                                                           CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
-        }
+            IQueryable<TEntity> queryable = Query();
+            if (!enableTracking) queryable = queryable.AsNoTracking();
+            if (include != null) queryable = include(queryable);
+            if (predicate != null) queryable = queryable.Where(predicate);
+            if (orderBy != null)
+                return await orderBy(queryable).ToPaginateAsync(index,size,0,cancellationToken);
 
-        public Task<IPaginate<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, int index = 0, int size = 10, bool enableTracking = true, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
+            return await queryable.ToPaginateAsync(index, size,0,cancellationToken);
+
         }
 
         public IQueryable<TEntity> Query()
         {
-            throw new NotImplementedException();
+            return Context.Set<TEntity>();
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            Context.Entry(entity).State = EntityState.Added;
+            await Context.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Deleted;
+            await Context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+            await Context.SaveChangesAsync();
         }
     }
 }
