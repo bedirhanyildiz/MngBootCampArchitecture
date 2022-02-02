@@ -1,11 +1,18 @@
 ﻿using Core.Persistence.Paging;
 using Microsoft.EntityFrameworkCore.Query;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Core.Persistence.Repositories
 {
     public interface IAsyncRepository<T> where T : Entity
     {
+        //Eksiği olanlar : Linq, Predicate, Expression, Func
+        //Bu reponun asenkron olmayan versiyonunu yazınız
         Task<T> GetAsync(Expression<Func<T, bool>> predicate);
         Task<IPaginate<T>> GetListAsync(Expression<Func<T, bool>> predicate = null,
                              Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
@@ -14,7 +21,9 @@ namespace Core.Persistence.Repositories
                              int size = 10,
                              bool enableTracking = true,
                              CancellationToken cancellationToken = default);
+
         IQueryable<T> Query();
+
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);

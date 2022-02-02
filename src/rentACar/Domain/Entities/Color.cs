@@ -14,7 +14,7 @@ namespace Domain.Entities
             Cars = new HashSet<Car>();
         }
 
-        public Color(int id, string name):this()
+        public Color(int id,string name):this()
         {
             Id = id;
             Name = name;

@@ -15,8 +15,11 @@ namespace Persistence
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<BaseDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("rentACarConnectionString")));
+            services.AddDbContext<BaseDbContext>(options => options.UseSqlServer
+                            (configuration.GetConnectionString("rentACarConnectionString")));
+
             services.AddScoped<IBrandRepository, BrandRepository>();
+
             return services;
         }
     }

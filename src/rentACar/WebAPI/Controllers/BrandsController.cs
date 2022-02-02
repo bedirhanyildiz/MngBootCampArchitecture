@@ -6,13 +6,14 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandController : BaseController
+    public class BrandsController : BaseController
     {
-        [HttpPost("Add")]
-        public async Task<IActionResult> Add([FromBody]CreateBrandCommand createBrandCommand)
+        [HttpPost("add")]
+        public async Task<IActionResult> Add([FromBody] CreateBrandCommand createBrandCommand) 
         {
             var result = await Mediator.Send(createBrandCommand);
             return Created("", result);
         }
+
     }
 }

@@ -18,11 +18,10 @@ namespace Application.Features.Brands.Rules
         }
 
         //Gerkhin 
-        public async Task BrandNameCanNotBeDuplicatedWhenInserted(string name)
+        public async Task BrandNameCanNotBeDuplicatedWhenInserted(string name) 
         {
             var result = await _brandRepository.GetListAsync(b => b.Name == name);
-            if (result.Items.Any())
-            {
+            if (result.Items.Any()) {
                 throw new BusinessException("Brand name exists");
             }
         }
